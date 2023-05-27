@@ -1,0 +1,43 @@
+Link - https://leetcode.com/problems/palindrome-number/
+
+
+Solution 1 - Not the most Optimal
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x != abs(x):
+            return False
+        else:
+            x_new = str(x)
+            str1 = ''
+            for i in range(len(x_new)-1, -1, -1):
+                str1 += x_new[i]
+            if x_new == str1:
+                return True
+            else:
+                return False
+Solution 2 - Better, but still not optimal
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        x_n = str(x)
+        x_new = x_n[::-1]
+        if x_n == x_new:
+            return True
+        else:
+            return False
+            
+Solution 3 - Doesnt use strings, referred this video from Youtube - https://www.youtube.com/watch?v=0nGiYznMFyA
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+
+        i = x
+        d = 0
+        while i>0:
+            s = i%10
+            d = d*10 + s
+            i = i // 10
+        if x == d:
+            return True
+        else:
+            return False
