@@ -1,0 +1,16 @@
+Link - https://leetcode.com/problems/longest-common-prefix/submissions/
+
+Solution inspired from comments in leetcode
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        ans = ''
+        s_sorted = sorted(strs)
+        first = s_sorted[0]
+        last = s_sorted[-1]
+
+        for i in range(0, len(first)):
+            if first[i] != last[i]:
+                return ans
+            ans += first[i]
+        return ans
+        
