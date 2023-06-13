@@ -1,0 +1,28 @@
+Link - https://leetcode.com/problems/majority-element/submissions/?envType=study-plan-v2&envId=top-interview-150
+
+Solution using Hash map (uses memory O(n)) -
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        dict1 = {}
+        for i in nums:
+            if i not in dict1:
+                dict1[i] = 1
+            elif i in dict1:
+                dict1[i] += 1 
+        return max(dict1, key=lambda k:dict1[k])
+  
+  Solution using Boyer Moore Algorithm (uses memory O(1))-
+  class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        res, count = 0, 0
+
+        for i in nums:
+            if count == 0:
+                res = i
+                count += 1
+            elif i == res:
+                count += 1
+            else:
+                count -= 1
+        return res
+        
