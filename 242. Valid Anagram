@@ -1,0 +1,56 @@
+Link - https://leetcode.com/problems/valid-anagram/submissions/
+Description -
+================================================
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+
+
+Solution 1 - Brute Force - 
+================================================
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        # Base Case - Checks if the lengths are the same, exits code and     returns false if lengths are not the same
+        if len(s)!= len(t):
+            return False
+        # Takes an empty list and appends the string literals to it.
+        li1 = []
+        for i in s:
+            li1.append(i)
+        # Iterates the second string and checks if a word exists in the list, if yes - removes the word, if not exits the code and returns False
+        for i in t:
+            if i in li1:
+                li1.remove(i)
+            else:
+                return False
+        # Finally, checks if all the words have been removed from the list, if not returns false else returns true.
+        if len(li1) > 0:
+            return False
+        return True
+        
+Solution 2 - Array and Hash map - (Neetcode - https://www.youtube.com/watch?v=9UtInBqnCgA)
+=====================================================
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        # Base Case - Checks if the lengths are the same, exits code and     returns false if lengths are not the same
+        if len(s)!= len(t):
+            return False
+        countS, countT = {}, {}
+
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+        
+        for c in countS:
+            if countS[c] != countT.get(c, 0):
+                return False
+        return True
